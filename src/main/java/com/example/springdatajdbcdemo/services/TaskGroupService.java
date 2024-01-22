@@ -1,8 +1,5 @@
 package com.example.springdatajdbcdemo.services;
 
-import com.example.springdatajdbcdemo.entities.Task;
-import com.example.springdatajdbcdemo.entities.TaskGroup;
-
 import java.util.List;
 
 public interface TaskGroupService {

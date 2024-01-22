@@ -5,11 +5,10 @@ CREATE TABLE AppUser (
     email VARCHAR(255) NOT NULL UNIQUE
 );
 
--- TaskGroup Table
-CREATE TABLE TaskGroup (
-    group_id BIGSERIAL PRIMARY KEY,
-    appUser_id BIGINT REFERENCES AppUser(user_id),
-    FOREIGN KEY (appUser_id) REFERENCES AppUser(user_id)
+-- Category Table
+CREATE TABLE Category (
+    category_id BIGSERIAL PRIMARY KEY,
+    category_name VARCHAR(255) NOT NULL
 );
 
 -- Task Table
@@ -19,14 +18,12 @@ CREATE TABLE Task (
     text TEXT,
     isComplete BOOLEAN,
     date DATE,
-    taskGroup_id BIGINT REFERENCES TaskGroup(group_id),
-    category_id BIGINT REFERENCES Category(category_id),
-    FOREIGN KEY (taskGroup_id) REFERENCES TaskGroup(group_id),
-    FOREIGN KEY (category_id) REFERENCES Category(category_id)
+    appUser_id BIGINT REFERENCES AppUser(user_id)
 );
 
--- Category Table
-CREATE TABLE Category (
-    category_id BIGSERIAL PRIMARY KEY,
-    category_name VARCHAR(255) NOT NULL
+-- TaskCategory Table
+CREATE TABLE TaskCategory (
+    task_id BIGINT REFERENCES Task(task_id),
+    category_id BIGINT REFERENCES Category(category_id),
+    PRIMARY KEY (task_id, category_id)
 );

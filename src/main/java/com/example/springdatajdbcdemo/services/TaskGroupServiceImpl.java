@@ -1,7 +1,5 @@
 package com.example.springdatajdbcdemo.services;
 
-import com.example.springdatajdbcdemo.entities.TaskGroup;
-
 import java.util.List;
 
 public class TaskGroupServiceImpl implements TaskGroupService{

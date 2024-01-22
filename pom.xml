@@ -30,8 +30,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-			<version>9.16.0</version>
+			<artifactId>flyway-database-postgresql</artifactId>
+			<version>10.4.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -61,6 +61,10 @@
 	<repositories>
 		<!-- Include the Spring Milestone repository -->
 		<repository>
+			<id>flyway-releases</id>
+			<url>https://repo1.maven.org/maven2/org/flywaydb/flyway-core/</url>
+		</repository>
+		<repository>
 			<id>spring-milestone</id>
 			<name>Spring Maven MILESTONE Repository</name>
 			<url>https://repo.spring.io/milestone</url>
@@ -78,6 +82,19 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>10.0.0</version> <!-- Use the version appropriate for your project -->
+
+				<!-- Configuration for database connection -->
+				<configuration>
+					<url>jdbc:postgresql://localhost:5432/tododb</url>
+					<user>risper</user>
+					<password>r</password>
+
 				</configuration>
 			</plugin>
 		</plugins>

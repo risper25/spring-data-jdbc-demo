@@ -1,7 +1,5 @@
 package com.example.springdatajdbcdemo.controllers;
 
-import com.example.springdatajdbcdemo.entities.TaskGroup;
-import com.example.springdatajdbcdemo.services.TaskGroupService;
 import com.example.springdatajdbcdemo.services.TaskGroupServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -1,20 +1,26 @@
 package com.example.springdatajdbcdemo.entities;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.MappedCollection;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.Date;
 import java.util.List;
-
+@Data
+@Table("task")
 public class Task {
     @Id
-    private Long task_id;
+    @Column("task_id")
+    private Long taskId;
     private String title;
     private String text;
     private Boolean isComplete;
     private Date date;
-    @Column("category_id")
+    // Eagerly load associated categories
+    @MappedCollection(idColumn = "category_id", keyColumn = "category_id")
     private List<Category> categories;
-    @Column("appUser_id")
-    private AppUser user_;
+    @Column("user_id")
+    private AppUser appuser;
 }

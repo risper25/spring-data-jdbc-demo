@@ -1,29 +1,30 @@
 -- AppUser Table
-CREATE TABLE AppUser (
+CREATE TABLE appuser(
     user_id BIGSERIAL PRIMARY KEY,
-    firstName VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE
 );
 
 -- Category Table
-CREATE TABLE Category (
+CREATE TABLE category(
     category_id BIGSERIAL PRIMARY KEY,
-    category_name VARCHAR(255) NOT NULL
+    category_name VARCHAR(255) NOT NULL UNIQUE
 );
 
 -- Task Table
-CREATE TABLE Task (
+CREATE TABLE task(
     task_id BIGSERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL UNIQUE,
     text TEXT,
-    isComplete BOOLEAN,
+    is_complete BOOLEAN,
     date DATE,
-    appUser_id BIGINT REFERENCES AppUser(user_id)
+    user_id BIGINT REFERENCES AppUser(user_id),
+    category_id BIGINT REFERENCES category(category_id)
 );
 
 -- TaskCategory Table
-CREATE TABLE TaskCategory (
-    task_id BIGINT REFERENCES Task(task_id),
-    category_id BIGINT REFERENCES Category(category_id),
+CREATE TABLE taskcategory(
+    task_id BIGINT REFERENCES task(task_id),
+    category_id BIGINT REFERENCES category(category_id),
     PRIMARY KEY (task_id, category_id)
 );

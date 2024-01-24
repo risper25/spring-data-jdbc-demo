@@ -1,7 +1,9 @@
 package com.example.springdatajdbcdemo.controllers;
 
+import com.example.springdatajdbcdemo.controllers.dtos.UserDto;
 import com.example.springdatajdbcdemo.entities.AppUser;
 import com.example.springdatajdbcdemo.services.UserServiceImpl;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +17,10 @@ import java.util.List;
 public class UserController  {
     private final UserServiceImpl service;
     @PostMapping("/add")
-    public ResponseEntity<AppUser> addUser(@RequestBody AppUser user) {
+    public ResponseEntity<AppUser> addUser(@RequestBody UserDto request) {
+        AppUser user=new AppUser();
+        user.setFirstName(request.first_name());
+        user.setEmail(request.email());
         return ResponseEntity.ok(service.addUser(user));
     }
 
